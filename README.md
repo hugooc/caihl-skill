@@ -33,7 +33,7 @@ Trigger it with prompts like "from a CAIHL perspective," "through the critical A
 Clone or copy the skill folder into your skills directory:
 
 ```bash
-git clone https://github.com/<your-username>/caihl-skill
+git clone https://github.com/hugooc/caihl-skill
 mkdir -p ~/.claude/skills
 cp -r caihl-skill/critical-ai-health-literacy ~/.claude/skills/
 ```
@@ -50,7 +50,6 @@ index.html                       # caihl.org landing page (static, self-containe
 og-image.png                     # Open Graph / Twitter card image
 scripts/
   generate-og-image.py           # regenerates og-image.png
-archive/                         # snapshots of prior index.html versions
 PUBLISH.md                       # original launch-night handoff plan (historical)
 README.md, LICENSE
 ```

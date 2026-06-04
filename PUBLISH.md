@@ -1,11 +1,10 @@
 # PUBLISH.md — Handoff plan for Claude Code
 
-> **Status (as of 2026-06-04):** Launch is complete. Repo is live at
-> `hugooc/caihl-skill` (still PRIVATE) and the site is live at https://caihl.org.
-> Vadim's first review has been applied. This document is kept as a historical
-> record of the launch-night plan; for ongoing redeploys, the relevant command
-> is `wrangler pages deploy . --project-name caihl`. The "flip to public" step
-> below is still pending.
+> **Status (as of 2026-06-04):** Launch is complete and the repo is now PUBLIC
+> at https://github.com/hugooc/caihl-skill. The site is live at https://caihl.org
+> and Vadim's first review has been applied. This document is kept as a
+> historical record of the launch-night plan. For ongoing redeploys, the
+> relevant command is `wrangler pages deploy . --project-name caihl`.
 
 ## Goal
 - **Tonight:** private GitHub repo + live static site at **https://caihl.org** (Cloudflare).
