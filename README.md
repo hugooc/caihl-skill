@@ -2,6 +2,8 @@
 
 A Claude Skill that applies the **Critical AI Health Literacy** framework as an analytical lens to any topic where AI and health intersect.
 
+Live site: **https://caihl.org/**
+
 The framework comes from Hugo Campos and Liz Salmi's 2025 National Academy of Medicine commentary, *"Critical AI Health Literacy as Liberation Technology,"* which applies Paulo Freire's theory of critical literacy to health AI.
 
 This is a "way of seeing," not a fixed output format. You control the output. The skill provides the lens.
@@ -42,10 +44,17 @@ Then start a fresh session and run `/skills` to confirm it loaded.
 
 ```text
 critical-ai-health-literacy/
-  SKILL.md                       # the skill
-critical-ai-health-literacy.zip  # uploadable package
+  SKILL.md                       # the skill itself
+critical-ai-health-literacy.zip  # uploadable package the site links to
+index.html                       # caihl.org landing page (static, self-contained)
+og-image.png                     # Open Graph / Twitter card image
+scripts/
+  generate-og-image.py           # regenerates og-image.png
+archive/                         # snapshots of prior index.html versions
+PUBLISH.md                       # original launch-night handoff plan (historical)
+README.md, LICENSE
 ```
 
 ## License
 
-MIT. Attribution to Hugo Campos and Liz Salmi for the underlying framework is appreciated. The four-dimension frame for evaluating patient-facing AI is credited to Vadim Dukhanin.
+MIT. Attribution to Hugo Campos and Liz Salmi for the underlying framework is appreciated. The four-dimension frame for evaluating patient-facing AI is credited to Vadim Dukhanin et al.
