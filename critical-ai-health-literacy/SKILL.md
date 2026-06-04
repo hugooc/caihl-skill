@@ -30,7 +30,7 @@ This distinction is not about whether AI is "good" or "bad." It's about who it s
 
 ## Four Dimensions for Evaluating Patient-Facing AI
 
-*This four-dimension frame is credited to Vadim Dukhanin.*
+*This four-dimension frame is credited to Vadim Dukhanin et al.*
 
 The institutional vs. patient-directed axis is the entry point, but evaluating a specific tool well means separating distinctions that are easy to collapse into one word. These four dimensions are conditions of use, not fixed properties of a tool. Reassess them continuously, because a tool's answers shift as business models, deployment contexts, and patient behavior change.
 
@@ -45,7 +45,7 @@ This is the dimension most often confused with the others. Keep three terms sepa
 
 - **Patient-facing**: the tool touches patients.
 - **Patient-directed**: the patient controls its use.
-- **Patient-aligned**: the tool's interest structure prioritizes patients.
+- **Patient-aligned**: the interests behind the AI prioritize patients, though the AI may serve multiple stakeholders simultaneously and patient decision-making capacity varies. Alignment is not agency.
 
 A tool can be patient-facing without being patient-aligned. A health system chatbot touches patients but may prioritize institutional efficiency. An insurer's tool may prioritize utilization management. A free commercial tool may rely on data brokerage, advertising, pharmaceutical partnerships, or algorithmic nudges. Patient-aligned tools operate on a philanthropic, crowdsourced, or public-service footing. Government tools may be patient-aligned or form their own government-aligned category. The critical question is not whether non-patient interests exist, but how much they impair the tool's ability to support patient agency. This dimension is multi-stakeholder, best pictured as a spidergram where each axis is an interest the tool may serve at any given moment.
 
