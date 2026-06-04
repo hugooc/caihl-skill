@@ -89,7 +89,7 @@
   .hero h1 {
     font-family: var(--display);
     font-weight: 500;
-    font-size: clamp(2.7rem, 6.4vw, 4.6rem);
+    font-size: clamp(3.2rem, 7.6vw, 5.6rem);
     line-height: 1.02;
     letter-spacing: -0.02em;
     margin: 0 0 28px;
@@ -118,9 +118,9 @@
     position: relative; z-index: 2;
     border-top: 1px solid rgba(248,246,242,0.18);
     padding: 26px 0 38px;
-    display: flex; flex-wrap: wrap; gap: 36px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px;
   }
-  .meta-item { max-width: 260px; }
+  .meta-item { min-width: 0; }
   .meta-label {
     font-family: var(--display);
     font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -211,7 +211,7 @@
   @media (max-width: 680px) {
     .wrap { padding: 0 22px; }
     .grid { grid-template-columns: 1fr; }
-    .hero-meta { gap: 22px; }
+    .hero-meta { grid-template-columns: 1fr; gap: 22px; }
     section { padding: 56px 0; }
   }
 </style>
@@ -247,7 +247,7 @@
         </div>
         <div class="meta-item">
           <p class="meta-label">Evaluation frame</p>
-          <p class="meta-val">Vadim Dukhanin<br><span>Four dimensions for patient-facing AI</span></p>
+          <p class="meta-val">Vadim Dukhanin<br><span>Four dimensions for <span style="white-space:nowrap">patient-facing AI</span></span></p>
         </div>
         <div class="meta-item">
           <p class="meta-label">License</p>

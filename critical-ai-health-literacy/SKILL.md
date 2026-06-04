@@ -5,16 +5,11 @@ description: >
   topic involving AI and health. This skill is a way of seeing, not a specific output format.
   Trigger when the user says things like "from a CAIHL perspective," "through the critical
   AI health literacy lens," "from a Freirean point of view," "as an AI patient," or asks
-  you to analyze any health AI topic critically. Also trigger on discussions about:
-  institutional vs patient-directed AI, patient-facing vs patient-directed vs patient-aligned
-  AI, clinician-facing AI, public-facing AI, agency-expanding vs agency-constraining AI,
-  evaluating patient-facing AI, patients as evaluation partners, AI orchestrators,
-  algorithmic resistance, AI patients, liberation technology in healthcare, health AI bias,
-  patient AI rights, ambient scribes, AI clinical notes, prior authorization AI, clinical
-  decision support, or health AI equity. Use this skill for analyzing news, evaluating
-  products, critiquing papers, writing content, or any conversation where AI and health
-  intersect. The user controls the output format and length. The skill provides the
-  analytical framework.
+  you to analyze any health AI topic critically — for example, institutional vs
+  patient-directed AI, ambient scribes, prior authorization AI, algorithmic resistance,
+  or health AI equity. Use for analyzing news, evaluating products, critiquing papers,
+  or any conversation where AI and health intersect. The user controls output; the skill
+  provides the lens.
 ---
 
 # Critical AI Health Literacy (CAIHL)
