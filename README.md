@@ -1,12 +1,8 @@
-# Critical AI Health Literacy (CAIHL) Skill
+# Critical AI Health Literacy (CAIHL)
 
-A Claude Skill that applies the **Critical AI Health Literacy** framework as an analytical lens to any topic where AI and health intersect.
+This repository is the working home for the **Critical AI Health Literacy** framework, its installable AI skill, the public website at **https://caihl.org/**, and related private research and educational materials.
 
-Live site: **https://caihl.org/**
-
-The framework comes from Hugo Campos and Liz Salmi's 2025 National Academy of Medicine commentary, *"Critical AI Health Literacy as Liberation Technology,"* which applies Paulo Freire's theory of critical literacy to health AI.
-
-This is a "way of seeing," not a fixed output format. You control the output. The skill provides the lens.
+The framework comes from Hugo Campos and Liz Salmi's 2025 National Academy of Medicine commentary, *"Critical AI Health Literacy as Liberation Technology,"* which applies Paulo Freire's theory of critical literacy to health AI. It is a "way of seeing," not a fixed output format: the person using it controls the purpose and output; the framework provides the lens.
 
 ## What it does
 
@@ -40,19 +36,46 @@ cp -r caihl-skill/critical-ai-health-literacy ~/.claude/skills/
 
 Then start a fresh session and run `/skills` to confirm it loaded.
 
-## Structure
+## Project map
 
 ```text
 critical-ai-health-literacy/
-  SKILL.md                       # the skill itself
-critical-ai-health-literacy.zip  # uploadable package the site links to
-index.html                       # caihl.org landing page (static, self-contained)
-og-image.png                     # Open Graph / Twitter card image
+  SKILL.md                       # canonical skill source
+critical-ai-health-literacy.zip  # uploadable public skill package
+index.html                       # canonical caihl.org landing page
+og-image.png                     # canonical social-sharing image
+site/                            # source for headers, robots, 404, and security.txt
 scripts/
-  generate-og-image.py           # regenerates og-image.png
-PUBLISH.md                       # original launch-night handoff plan (historical)
-README.md, LICENSE
+  deploy.sh                      # builds a safe public bundle and deploys it
+  generate-og-image.py           # regenerates the social-sharing image
+public/                          # generated deployment bundle; do not hand-edit
+references/                      # private source texts; excluded from Git and deploys
+output/
+  curriculum/                    # editable educational materials
+  pdf/                           # shareable PDF exports
+tmp/                             # temporary render and quality-check files
+PUBLISH.md                       # current deployment guide and historical notes
+README.md                        # authoritative project orientation
+LICENSE                          # MIT license
 ```
+
+## Working conventions
+
+- Treat `README.md` as the front door and update the project map when a durable folder or workflow is added.
+- Edit canonical sources (`index.html`, `critical-ai-health-literacy/SKILL.md`, and `site/`), not generated files in `public/`.
+- Keep source materials in `references/` private unless their rights and intended use have been reviewed. That folder is excluded from Git and from the public deployment bundle.
+- Put editable teaching or research artifacts in a descriptive `output/` subfolder and their shareable exports in `output/pdf/`.
+- Preserve provenance: distinguish framework source material, outside references, working analysis, and public-facing outputs.
+
+## Publishing
+
+Follow [PUBLISH.md](PUBLISH.md). The safe deployment command is:
+
+```bash
+./scripts/deploy.sh
+```
+
+The script rebuilds `public/` from an explicit allowlist and deploys only that generated bundle. **Never deploy the repository root**, because it contains private working material.
 
 ## License
 
