@@ -48,8 +48,9 @@ On June 10, deploying the repository root exposed files that were never intended
 
 ## Starter kit subdomain (added October 7, 2026)
 
-- Intended address: https://kit.caihl.org/ (custom domain, not yet attached)
-- Cloudflare project: `caihl-kit` (separate from `caihl`, not yet created)
+- Live: https://kit.caihl.org/ (custom domain attached, CNAME `kit` -> `caihl-kit.pages.dev`)
+- Cloudflare project: `caihl-kit`, separate from `caihl`. Connected to GitHub `hugooc/caihl-skill`, production branch `main`, no build command, output directory `kit`.
+- **A push to `main` deploys the kit automatically.** This is different from caihl.org itself, which is still direct upload via `scripts/deploy.sh`. Nothing outside `kit/` is served by `caihl-kit`.
 - Sources: `kit/` (index.html, starter-folder.zip, quick-start.pdf, _headers, robots.txt, 404.html). The working copy and build scripts live in `_Documents WORK/2026-09-29__BUILD__Patient-Directed-AI-Record-Turnkey-Kit/`; `kit/` is the deploy copy.
-- Deploy: `./scripts/deploy-kit.sh`. A git push does not deploy anything; both Pages projects are direct-upload.
+- `scripts/deploy-kit.sh` is a manual fallback (direct upload to the same project). Normally unnecessary.
 - The kit's `_headers` allows one inline script by SHA-256 hash (the text-size control). If `kit/index.html` changes, recompute the hash or the buttons will stop working.
