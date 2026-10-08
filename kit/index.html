@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Health Record, Kept by You</title>
+<meta name="description" content="A small starter kit for patients and family caregivers who want to organize a few health records and use AI to understand them, on their own terms.">
+<style>
+:root{
+  --bg:#fffdf8; --ink:#1a1a1a; --muted:#444; --line:#d9d4c7; --accent:#1f5f8b; --accent-ink:#fff;
+  --box:#f3efe4; --warn:#fff3cd; --warn-line:#c69a1a; --urgent:#fde8e6; --urgent-line:#b3261e;
+  --size:1.25rem;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#15171a; --ink:#f1efe8; --muted:#cfcbc0; --line:#3a3d44; --accent:#8ec1e6; --accent-ink:#0f1113;
+    --box:#20242a; --warn:#3b3320; --warn-line:#c69a1a; --urgent:#3a2220; --urgent-line:#e07a70;
+  }
+}
+*{box-sizing:border-box}
+html{font-size:var(--size)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.6}
+.skip{position:absolute;left:-999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.5em 1em}
+.skip:focus{left:1em;top:1em;z-index:10}
+main,header,footer{max-width:40rem;margin:0 auto;padding:0 1rem}
+header{padding-top:2rem}
+h1{font-size:2rem;line-height:1.2;margin:0 0 .5rem}
+h2{font-size:1.5rem;line-height:1.25;margin:3rem 0 1rem;padding-top:1rem;border-top:3px solid var(--line)}
+h3{font-size:1.15rem;margin:1.75rem 0 .5rem}
+p,li{max-width:36rem}
+p{margin:0 0 1rem}
+ul,ol{padding-left:1.4rem}
+li{margin-bottom:.6rem}
+a{color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.lede{font-size:1.15rem;color:var(--muted)}
+nav.toc{background:var(--box);border-radius:10px;padding:1rem 1.25rem;margin:1.5rem 0}
+nav.toc ol{margin:0;padding-left:1.4rem}
+nav.toc li{margin-bottom:.4rem}
+.tools{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin:1rem 0;color:var(--muted)}
+.tools button{font:inherit;padding:.3em .9em;border:2px solid var(--accent);background:transparent;color:var(--ink);border-radius:8px;cursor:pointer;min-width:3.2em}
+.download{background:var(--box);border:2px solid var(--line);border-radius:12px;padding:1.25rem;margin:1.5rem 0}
+.download h3{margin-top:0}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:.7em 1.2em;border-radius:10px;font-weight:600;text-decoration:none;margin:.3rem .5rem .3rem 0}
+.btn:hover{filter:brightness(1.1)}
+.notice{background:var(--warn);border-left:6px solid var(--warn-line);padding:.9rem 1.1rem;border-radius:0 10px 10px 0;margin:1.25rem 0}
+.urgent{background:var(--urgent);border-left:6px solid var(--urgent-line);padding:.9rem 1.1rem;border-radius:0 10px 10px 0;margin:1.25rem 0}
+.notice p:last-child,.urgent p:last-child{margin-bottom:0}
+.steps{counter-reset:step;padding-left:0}
+.steps>li{list-style:none;counter-increment:step;position:relative;padding-left:3.2rem;margin-bottom:1.6rem}
+.steps>li::before{content:counter(step);position:absolute;left:0;top:-.1rem;width:2.3rem;height:2.3rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem}
+.steps>li>strong{display:block;margin-bottom:.2rem}
+.steps .sub{padding-left:1.2rem;margin-top:.5rem}
+pre{background:var(--box);border:1px solid var(--line);border-radius:10px;padding:1rem;white-space:pre-wrap;font-size:1rem;line-height:1.5;overflow-x:auto;font-family:inherit}
+pre.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem}
+.three{display:grid;gap:.75rem;margin:1rem 0}
+.three div{background:var(--box);border-radius:10px;padding:.9rem 1.1rem}
+.three b{display:block;font-size:1.1rem}
+dl.services dt{font-weight:700;margin-top:1rem}
+dl.services dd{margin:0 0 .3rem 0;color:var(--muted)}
+details{border:2px solid var(--line);border-radius:10px;padding:.6rem 1rem;margin:1rem 0}
+summary{cursor:pointer;font-weight:600;padding:.3rem 0}
+details h4{margin:1rem 0 .3rem;font-size:1.05rem}
+.folder{background:var(--box);border-radius:10px;padding:.75rem 1rem;line-height:1.6;border-collapse:collapse;width:100%}
+.folder th{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;font-weight:600;text-align:left;white-space:nowrap;padding:.2rem .9rem .2rem 0;vertical-align:top}
+.folder th.in{padding-left:1.2rem}
+.folder td{padding:.2rem 0;color:var(--muted);vertical-align:top}
+footer{margin-top:4rem;padding:2rem 1rem 3rem;border-top:3px solid var(--line);color:var(--muted)}
+@media print{
+  .tools,.skip,nav.toc{display:none}
+  body{font-size:11pt}
+  a{color:inherit;text-decoration:none}
+  details{display:block}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+
+<header>
+  <h1>Your Health Record, Kept by You</h1>
+  <p class="lede">A small starter kit for people who want to organize a few health records and use AI to understand them, on their own terms. For patients, and for the family members who help them.</p>
+
+  <div class="tools" role="group" aria-label="Text size">
+    <span id="ts-label">Text size:</span>
+    <button type="button" id="ts-down" aria-label="A minus, smaller text">A&minus;</button>
+    <button type="button" id="ts-up" aria-label="A plus, larger text">A+</button>
+    <span id="ts-now" aria-live="polite"></span>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#what">What this is</a></li>
+      <li><a href="#before">Before you upload anything</a></li>
+      <li><a href="#first">Your first session</a></li>
+      <li><a href="#next">Coming back, and helping someone else</a></li>
+      <li><a href="#help">Help with the computer steps</a></li>
+    </ol>
+  </nav>
+</header>
+
+<main id="main">
+
+<div class="urgent">
+  <p><b>If you feel unwell, or you are not sure whether to take a medicine, call your doctor, your pharmacist, or emergency services now.</b> Do not wait for an AI or a portal. This kit is for understanding records, not for urgent decisions.</p>
+</div>
+
+<h2 id="what">1. What this is</h2>
+
+<p>You get copies of your health records all the time. After-visit summaries (the printout you get at the end of an appointment). Lab results. Letters. Most of them end up in a drawer or a patient portal you rarely open. When a question comes up, you cannot find the right page, and the AI you might ask knows nothing about you.</p>
+
+<p>This kit gives you one folder with three parts. You put a few records in it. You add what you know that the records leave out. You use an AI of your choice to help you read it all, and you keep the answers that were worth keeping. The folder lives on your own computer. You decide what goes in, what the AI sees, and what you do with what it says.</p>
+
+<p>Think of it as a shoebox with three drawers:</p>
+
+<table class="folder" aria-label="What is in the folder">
+<tr><th scope="row">My Health Record/</th><td>the folder itself</td></tr>
+<tr><th scope="row" class="in">1 Original Records/</th><td>copies of what you were given. Never edited.</td></tr>
+<tr><th scope="row" class="in">2 My Notes/</th><td>what you noticed, asked, or think is wrong.</td></tr>
+<tr><th scope="row" class="in">3 AI Conversations/</th><td>answers you chose to keep, with a label on top.</td></tr>
+<tr><th scope="row" class="in">Start Here.txt</th><td>the message you paste into the AI each time.</td></tr>
+<tr><th scope="row" class="in">Questions and Gaps.txt</th><td>your running list of open questions.</td></tr>
+<tr><th scope="row" class="in">Before You Upload.txt</th><td>privacy choices. Read once.</td></tr>
+</table>
+
+<p>The three drawers are the heart of the kit. A record from your doctor, a note you wrote yourself, and an answer an AI gave you are three different things. Keeping them in separate places is what lets you tell them apart later, when it matters.</p>
+
+<div class="download">
+  <h3>Get the kit</h3>
+  <p><a class="btn" href="starter-folder.zip" download>Download the starter folder (ZIP, 75 KB)</a> <a class="btn" href="quick-start.pdf">Open the printable quick-start (PDF, 2 pages)</a></p>
+  <p>The download is a ZIP file, which is a folder packed into one file. Inside are two folders: <b>My Health Record</b>, nearly empty and ready for you, and <b>Sample Record (Fictional)</b>, a made-up patient's folder after a few weeks of use, for practice. If opening a ZIP is new to you, see <a href="#help">Help with the computer steps</a>. If you cannot open it at all, the printable lists the folder names so you can make them by hand, and the message to paste is in step 5 below.</p>
+</div>
+
+<h3>What it is not</h3>
+<p>It is not a medical device, a diagnosis tool, or a replacement for your care team. An AI reading your records can help you understand them and ask better questions. It can also be wrong, and sound certain while it is wrong. The kit is built around checking it. Nothing here promises to catch mistakes or keep you safe. It helps you keep the thinking in your own hands.</p>
+
+<h3>What you need</h3>
+<ul>
+  <li>A computer (Mac or Windows). A tablet or phone can work, but folders are harder to manage there. This first version is written for a computer.</li>
+  <li>Three to five recent documents. A photo of a paper document is fine.</li>
+  <li>An account with a chat AI that lets you attach a file. As of October 2026, the free versions of ChatGPT, Claude, Gemini, and Copilot all do, with daily limits. The kit does not favor one. If you have never set up an account, this is a good moment to ask someone to sit with you. It takes an email address, a password, and usually a code sent to your phone.</li>
+  <li>About 45 minutes the first time.</li>
+</ul>
+
+<h2 id="before">2. Before you upload anything</h2>
+
+<p>When you attach a document to a chat AI, a copy goes to that company's computers. The AI does its work there, not on your machine. The original stays in your folder, but a copy now exists somewhere else, and you cannot call it back. Decide what you are comfortable with before you start, not after.</p>
+
+<div class="notice">
+  <p><b>The question to keep asking:</b> is this AI working <i>for</i> me, or <i>on</i> me? An AI you open, feed, and question yourself is working for you. An AI built into a portal, an insurance app, or a clinic's tool is working first for whoever built it. It may still help you. But knowing the difference is the whole reason to keep your own record.</p>
+</div>
+
+<h3>Your choices are not all or nothing</h3>
+<ul>
+  <li>Start with one document, not your whole history.</li>
+  <li>Cover what the AI does not need to do its job: account numbers, insurance ID, Social Security number, date of birth, address, phone. The simplest way: print the page, cover those lines with a black marker, take a photo, and upload the photo. Keep the untouched original in <b>1 Original Records</b>.</li>
+  <li>If a record mentions another person's health (a spouse, a family history page), leave that page out unless you have their permission too.</li>
+  <li>Use your own private account, not a work, school, or shared one. Work and school accounts are managed by someone else.</li>
+  <li>Use the service's temporary or private chat mode if it has one, and save the useful part yourself.</li>
+  <li>Decide that some documents stay off the computer entirely. That is a reasonable choice.</li>
+</ul>
+
+<h3>Turn off "use my chats to train the AI"</h3>
+<p>Most services have a setting that stops them from using your conversations to improve future versions. It is worth turning off. It does not delete anything already sent. Companies may still keep chats for a while, for example to review them for safety, even with these settings on. Think "do not reuse," not "do not keep."</p>
+
+<p>Checked October 7, 2026. These settings move and get renamed. If you do not see these words, look for "Data," "Privacy," "Activity," or "Improve the model." You only need the one service you plan to use.</p>
+
+<dl class="services">
+  <dt>ChatGPT (OpenAI)</dt>
+  <dd>Click your name or picture, then Settings, then Data Controls. Turn off "Improve the model for everyone." For one-time questions, "Temporary Chat" is not added to your history and is not used for training, though the company may keep it briefly.</dd>
+  <dt>Claude (Anthropic)</dt>
+  <dd>Settings, then Privacy. Turn off "Help improve Claude." An "Incognito" chat is not used for training even if the main setting is on.</dd>
+  <dt>Gemini (Google)</dt>
+  <dd>Go to myactivity.google.com/product/gemini while signed in. Turn off "Keep Activity" and set auto-delete to the shortest period. Google says chats are then kept only briefly.</dd>
+  <dt>Copilot (Microsoft, personal account)</dt>
+  <dd>Click your picture, then Privacy. Turn off "Training on conversation activity" and "Training on voice conversations." Not offered in every country. If you cannot find it, assume your chats may be used.</dd>
+</dl>
+
+<p>None of these keeps your document on your own computer. A folder on your desk is local. The AI reading it is not.</p>
+
+<h3>If you are helping someone else</h3>
+<p>Their record is theirs. Before you upload anything on their behalf, have a short conversation with them, even if you have helped them for years. Say what you want to do and that a copy goes to a company that will keep it for a while. Show them what you plan to share and what you plan to leave out. Tell them they can say no to any part of it, and that if they change their mind you will stop and delete the chats, though the company may keep a copy for a time. Then write down what they agreed to, with the date, in <b>2 My Notes</b>. The sample folder has an example.</p>
+<p>If the person cannot take part in that conversation, do not upload their records. Talk first with whoever holds legal authority for their health decisions (a health care agent or power of attorney), and ask the clinic about proxy access to the portal in your own name. Do not use their portal login as if you were them.</p>
+
+<h2 id="first">3. Your first session</h2>
+
+<p>About 45 minutes. At the end you will have a folder with one real document in it, one saved AI answer you have checked against the page, and one question written down for your care team. That is the whole goal. Do not try to do more the first time.</p>
+
+<p>If you would rather practice first, do all of this with the <b>Sample Record (Fictional)</b> folder instead of your own documents. Nothing in it is real.</p>
+
+<ol class="steps">
+  <li><strong>Helping someone else? Talk with them first.</strong> Say what you want to do, show them what you plan to share, and write down what they agreed to in <b>2 My Notes</b>, with the date. If you are doing this for yourself, skip to step 2.</li>
+  <li><strong>Download and open the starter folder.</strong> Move <b>My Health Record</b> somewhere you will find it again, like your Documents folder. You can rename it with your name. (Stuck? See <a href="#help">Help with the computer steps</a>.)</li>
+  <li><strong>Read "Before You Upload." Make your privacy choices.</strong> Turn off the training setting in the one AI service you plan to use. Five minutes, once.</li>
+  <li><strong>Put one document in "1 Original Records."</strong> Your most recent after-visit summary is a good first choice. Download it from your portal, or take a photo of the paper copy and get it onto the computer (emailing it to yourself is the easiest way). Name the file with the date first: <i>2026-09-15 After Visit Summary - Dr [name].pdf</i>. Do not edit it, ever.</li>
+  <li><strong>Open "Start Here." Fill in the two blanks.</strong> Who the person is, in a few words. Which document you are sharing. Then copy the message between the dotted lines. It looks like this:
+    <pre>I am keeping my own health record. Here is what you need to know.
+(If you are helping someone: "I am helping my mother keep her health record. She has agreed to this. 'I' below means me, the helper.")
+
+About the person: [first name or "me", age, one line about their health. No clinic name or address needed.]
+
+What I am sharing today: [the name of the document you attached]
+
+Please follow these rules while we talk. They are requests. Tell me if you cannot follow one.
+
+- Answer in plain language. Short sentences. No medical jargon unless you explain it.
+- Keep it brief. I will ask for more if I want it.
+- When you tell me something from a document, say which document and which part. If you cannot point to it, say so.
+- Tell me what the document does NOT say. If something seems to be missing, name it.
+- Say how sure you are. If a document is unclear or two documents disagree, show me both and do not pick one for me.
+- Do not diagnose me. Do not tell me to start, stop, or change a medicine. Help me understand and help me write down questions for my care team.
+- Keep three things separate: what the original record says, what I have told you myself, and what you are adding on your own.
+- At the end, list up to five new open questions in a short section called "Questions and Gaps" so I can copy it. Put the most important first.</pre>
+  </li>
+  <li><strong>Open your AI. Start a new chat. Paste the message. Attach your document.</strong> The attach button is usually a paperclip or a plus sign next to where you type. Then type the first question:
+    <pre>Explain this in plain language. Tell me what it says, what it does not say, and what you are unsure about.</pre>
+  </li>
+  <li><strong>Read the answer with the three questions in front of you.</strong>
+    <div class="three">
+      <div><b>Where did that come from?</b> Find it on your page. If you cannot, the AI should have said so. Did it?</div>
+      <div><b>What is missing?</b> What did the AI skip? What does the record itself not cover? The AI cannot see what it was not shown.</div>
+      <div><b>How sure is it?</b> Did the AI say? An AI saying "I am confident" is not proof. Check the page.</div>
+    </div>
+    <p>For example: if the AI says "a new medicine was started, hydrochlorothiazide 12.5 mg," look at your summary. Is that medicine in the plan? Is it in the medication table? Does it say 12.5? If all three match, good. If one does not, ask: "Where exactly does it say that?"</p>
+  </li>
+  <li><strong>Save what was worth keeping.</strong>
+    <ol class="sub">
+      <li>Copy the answer. Most AI services have a copy button under each answer. Open a new text file in <b>3 AI Conversations</b> and paste it in.</li>
+      <li>Type this label above the answer, filling in your details:
+<pre class="mono">Date: 2026-09-20
+AI service: ChatGPT (free)
+What I showed it: 2026-09-15 After Visit Summary - Dr Okafor.pdf
+My question: Explain this in plain language. What does it not say?
+Did I check the sources? Yes, found all three points in the summary. / Not yet.</pre>
+      Save the file with the date first: <i>2026-09-20 AI - After Visit Summary explained.txt</i></li>
+      <li>Open <b>Questions and Gaps.txt</b>. Copy in the open questions from the AI's answer that matter to you. Keep the ones you will actually ask someone.</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Done. You have one document, one checked answer, and one question for your care team. The folder now holds something the portal does not: your own reading of what the record says and what it leaves out.</p>
+
+<details>
+  <summary>What a good first answer looks like</summary>
+  <p>On October 7, 2026, while building this kit, we gave a general chat AI the Start Here message and the fictional sample's September visit summary, nothing else. It named the section each fact came from, listed what the document did not say (which labs were ordered, what "goal" means in numbers, when the next appointment is), kept what it was told separate from what it was adding, declined to judge whether a medicine was right, and ended with a list of open questions. The saved conversation in the sample folder is that answer, trimmed. One test, one AI, one day. Yours will differ.</p>
+  <p>It also missed something. The fictional September summary lists a medicine that the fictional June summary says was stopped. The AI only saw September, so it could not know. That is the point of the second session in section 4, and the reason "What is missing?" is your question to ask, not the AI's to answer.</p>
+</details>
+
+<h2 id="next">4. Coming back, and helping someone else</h2>
+
+<h3>The second session: add one more document</h3>
+<p>A week later, or whenever you have fifteen minutes, add one more document to <b>1 Original Records</b>. Start a new chat. Paste the Start Here message again, attach both documents, and ask:</p>
+<pre>Compare these two. What changed between them? Is there anything in one that does not match the other?</pre>
+<p>This is where the folder starts to earn its keep. Two documents can disagree. A medication list can be out of date. A plan can say "follow up in 3 months" with no appointment anywhere. Write each one down in <b>Questions and Gaps</b> as a CONFLICT (two sources disagree), a GAP (the record does not say), or a QUESTION (for your care team). Then take the list to the people who can actually answer it: your doctor's office, your pharmacist, the portal message box.</p>
+
+<h3>Every time you come back</h3>
+<ul>
+  <li>Start a new chat. Paste Start Here. Attach only what the question needs, usually one or two documents.</li>
+  <li>When you get a real answer from a real person, write it in <b>Questions and Gaps</b> with who answered and when. Do not delete the question.</li>
+  <li>When an AI answer turns out to be wrong, do not delete it either. Add a line at the top saying what was wrong and who told you. Wrong answers you caught are some of the most useful things in your folder.</li>
+  <li>Add a note to <b>2 My Notes</b> whenever something happens between visits. Date, who wrote it, what you saw. Not what you concluded.</li>
+</ul>
+
+<h3>If you are the helper</h3>
+<p>Everything above works the same, with three additions. Every note says who wrote it: "written by Teresa, daughter, helps with Rosa's care." The permission conversation is in the folder, dated. And the person you are helping sees what you save, if they want to. Your observations and theirs are both valuable. They are not the same thing, and the folder should make that visible.</p>
+
+<h3>What this kit leaves for later</h3>
+<p>On purpose. None of these is needed to start: getting records out of patient portals, medications across more than one doctor, asking a clinic to correct a record, using the folder from an iPad or phone, running an AI on your own computer, and backing up the folder beyond copying it to a USB stick now and then.</p>
+
+<p>If you try the kit, the most useful thing you can tell us is where you got stuck.</p>
+
+<h2 id="help">5. Help with the computer steps</h2>
+
+<p>Short instructions for the steps the guide takes for granted. Windows first, then Mac.</p>
+
+<details>
+  <summary>Opening the ZIP file</summary>
+  <h4>Windows</h4>
+  <p>After downloading, open your <b>Downloads</b> folder. Find <b>starter-folder</b>. Right-click it and choose <b>Extract All</b>, then <b>Extract</b>. A new folder opens. Drag <b>My Health Record</b> from there into <b>Documents</b>. (Double-clicking the ZIP only shows a preview. Files edited inside the preview can be lost.)</p>
+  <h4>Mac</h4>
+  <p>Open <b>Downloads</b>. Double-click <b>starter-folder.zip</b>. A folder named <b>starter-folder</b> appears next to it. Drag <b>My Health Record</b> into <b>Documents</b>.</p>
+</details>
+
+<details>
+  <summary>Opening, editing, and saving a text file</summary>
+  <h4>Windows</h4>
+  <p>Double-click <b>Start Here</b>. It opens in Notepad. Type over the parts in [square brackets]. Save with <b>Ctrl + S</b>. Windows may hide the ".txt" ending, so the file shows as "Start Here." That is fine.</p>
+  <p>To make a new text file: right-click an empty space inside the folder, choose <b>New</b>, then <b>Text Document</b>. Type a name and press Enter.</p>
+  <h4>Mac</h4>
+  <p>Double-click <b>Start Here.txt</b>. It opens in TextEdit. Type over the parts in [square brackets]. Save with <b>Command + S</b>.</p>
+  <p>To make a new text file: open TextEdit, choose <b>File</b>, then <b>New</b>. Choose <b>Format</b>, then <b>Make Plain Text</b>. Save it into the right folder with <b>Command + S</b>.</p>
+</details>
+
+<details>
+  <summary>Copying and pasting</summary>
+  <p>Select the text by clicking at the start and dragging to the end. Copy with <b>Ctrl + C</b> (Windows) or <b>Command + C</b> (Mac). Click where you want it to go. Paste with <b>Ctrl + V</b> or <b>Command + V</b>. Right-clicking the selected text also gives you Copy and Paste.</p>
+</details>
+
+<details>
+  <summary>Attaching a file in a chat AI</summary>
+  <p>Look for a paperclip or a plus sign next to the box where you type. Click it. Choose <b>Upload a file</b> or <b>Add file</b> if asked. A window opens showing your folders. Click <b>Documents</b>, then <b>My Health Record</b>, then <b>1 Original Records</b>, then your file. Click <b>Open</b>. The file name appears above the typing box. Now type your question and press Enter.</p>
+</details>
+
+<details>
+  <summary>Renaming a file</summary>
+  <p>Click the file once to select it. Right-click and choose <b>Rename</b>. Type the new name, with the date first, like <i>2026-09-15 After Visit Summary - Dr [name]</i>. Press Enter. Keep the ending (".pdf", ".jpg") if it is showing.</p>
+</details>
+
+<details>
+  <summary>Getting a phone photo onto the computer</summary>
+  <p>Take the photo flat, in good light. On the phone, open the photo, tap <b>Share</b>, and email it to yourself. On the computer, open the email and save the attachment into <b>1 Original Records</b>. Then rename it with the date first.</p>
+</details>
+
+</main>
+
+<footer>
+  <p>Part of <a href="https://caihl.org">Critical AI Health Literacy</a>. Draft prototype, October 2026. Not medical advice. The sample record is fictional: Rosa Ferreira, Teresa, Dr. Okafor, and Lakeside Family Medicine do not exist.</p>
+</footer>
+
+<script>
+(function(){
+  var sizes=[1,1.125,1.25,1.4,1.6], names=['smallest','small','normal','large','largest'], i=2;
+  try{ var s=localStorage.getItem('kit-size'); if(s!==null){ i=Math.min(sizes.length-1,Math.max(0,parseInt(s,10))); } }catch(e){}
+  function apply(){
+    document.documentElement.style.setProperty('--size', sizes[i]+'rem');
+    var n=document.getElementById('ts-now'); if(n){ n.textContent=names[i]; }
+    try{localStorage.setItem('kit-size',i);}catch(e){}
+  }
+  function step(d){ i=Math.min(sizes.length-1,Math.max(0,i+d)); apply(); }
+  var dn=document.getElementById('ts-down'), up=document.getElementById('ts-up');
+  if(dn){ dn.addEventListener('click', function(){ step(-1); }); }
+  if(up){ up.addEventListener('click', function(){ step(1); }); }
+  apply();
+})();
+</script>
+</body>
+</html>

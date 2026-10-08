@@ -45,3 +45,11 @@ The script deletes and rebuilds `public/`, copies only the approved public asset
 The site was launched in June 2026. The repository began as private and was later made public after review. The original launch-night checklist covered repository creation, Cloudflare setup, custom-domain attachment, and the transition to public visibility; those one-time steps are complete.
 
 On June 10, deploying the repository root exposed files that were never intended for the public site, including private reference texts. The deployment workflow was changed to use an explicit allowlist: `scripts/deploy.sh` now rebuilds `public/` and deploys only that bundle. This is why the safety rule above is mandatory.
+
+## Starter kit subdomain (added October 7, 2026)
+
+- Intended address: https://kit.caihl.org/ (custom domain, not yet attached)
+- Cloudflare project: `caihl-kit` (separate from `caihl`, not yet created)
+- Sources: `kit/` (index.html, starter-folder.zip, quick-start.pdf, _headers, robots.txt, 404.html). The working copy and build scripts live in `_Documents WORK/2026-09-29__BUILD__Patient-Directed-AI-Record-Turnkey-Kit/`; `kit/` is the deploy copy.
+- Deploy: `./scripts/deploy-kit.sh`. A git push does not deploy anything; both Pages projects are direct-upload.
+- The kit's `_headers` allows one inline script by SHA-256 hash (the text-size control). If `kit/index.html` changes, recompute the hash or the buttons will stop working.
