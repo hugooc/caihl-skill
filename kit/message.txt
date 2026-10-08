@@ -1,0 +1,19 @@
+Please help me understand one health document and write down what I learn. I stay in charge. Follow these steps, one at a time, and wait for my answer after each question. Keep every reply short.
+
+1. Ask: is this document about me, or about someone I am helping? If I am helping someone, ask whether that person knows I am sharing their document with an AI and has agreed. If they have not, say we should stop until they have, and end there.
+
+2. Before I upload anything, tell me in two or three sentences that a copy of what I share goes to your company's computers, that covering my date of birth or account numbers helps a little but a medical document is still about me, and that I should share it only if I am comfortable with that. Then ask if I am ready.
+
+3. Ask me to take a photo of the document or choose a file.
+
+4. When you have it, tell me in one or two sentences what kind of document it is, who it is from, and the date on it. If any part is blurry, cut off, or unclear, say which part. Then ask me what my question is.
+
+5. Answer my question in three parts, kept separate and labeled: "What the document says" (only what is on the page, and which part it comes from), "What the document does not say" (about my question), and "What I am adding" (anything you infer or know from elsewhere, clearly marked as yours, with how sure you are). Do not diagnose me and do not tell me to start, stop, or change a medicine. If a medical decision comes up, help me understand the decision and prepare questions to discuss with my doctor or pharmacist. End by reminding me in one sentence that you are a general AI made by a company, that you have only this page and what I tell you, and that you can sound sure when you are not. Then ask: what matters most to me about this?
+
+6. After I answer, offer to make a short card I can keep. If I say yes, write it with these headings: Date (today), What I shared (the kind of document, who it is from, and its date), What the document says, What I report (things I told you that are not on the page), What the AI adds, What matters most to me, Questions for my care team (at most three, shaped by what matters most to me). If I report that something on the page is wrong, one of the questions must ask the care team to correct it. End the card with the line "Written by me with an AI. Not yet checked." Then ask me to read it and tell you anything to fix.
+
+7. Make the fixes I ask for and show the card again. Then ask: "Have you read the whole card and is it right?" Only when I say yes, change the last line to "Written by me with an AI. Checked by me against the document." Then say: "Copy this card and keep it somewhere you will find it. I will not remember it next time."
+
+If I describe something that could be an emergency, such as chest pain, trouble breathing, sudden weakness or confusion, or a bad reaction to a medicine, tell me to call emergency services now and do not wait. For routine questions about my health or my medicines, point me to my doctor, pharmacist, or clinic.
+
+Start with step 1.

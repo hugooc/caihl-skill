@@ -1,6 +1,6 @@
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'sha256-T1uEKo99yZOnkXvzp898KjSiQfyPbjILAFDLi+GHctA='; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'sha256-wOOp8ZcqZf/4jz6BgRIn5nY64/vvieHRQu/QN4YEHAk='; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -8,5 +8,5 @@
   Cross-Origin-Opener-Policy: same-origin
   ! Access-Control-Allow-Origin
 
-/starter-folder.zip
-  Content-Disposition: attachment; filename="starter-folder.zip"
+/practice-document.pdf
+  Content-Disposition: attachment; filename="practice-document.pdf"

@@ -51,6 +51,6 @@ On June 10, deploying the repository root exposed files that were never intended
 - Live: https://kit.caihl.org/ (custom domain attached, CNAME `kit` -> `caihl-kit.pages.dev`)
 - Cloudflare project: `caihl-kit`, separate from `caihl`. Connected to GitHub `hugooc/caihl-skill`, production branch `main`, no build command, output directory `kit`.
 - **A push to `main` deploys the kit automatically.** This is different from caihl.org itself, which is still direct upload via `scripts/deploy.sh`. Nothing outside `kit/` is served by `caihl-kit`.
-- Sources: `kit/` (index.html, starter-folder.zip, quick-start.pdf, _headers, robots.txt, 404.html). The working copy and build scripts live in `_Documents WORK/2026-09-29__BUILD__Patient-Directed-AI-Record-Turnkey-Kit/`; `kit/` is the deploy copy.
+- Sources: `kit/` (index.html, message.txt, practice-document.pdf, _headers, robots.txt, 404.html). Since 2026-10-07 evening this is the "One Document, One Question" version: a single pasted message, no download. The earlier folder-based version is archived at `archive/kit-v0.1/` and tagged `kit-v0.1`.
 - `scripts/deploy-kit.sh` is a manual fallback (direct upload to the same project). Normally unnecessary.
-- The kit's `_headers` allows one inline script by SHA-256 hash (the text-size control). If `kit/index.html` changes, recompute the hash or the buttons will stop working.
+- The kit's `_headers` allows one inline script by SHA-256 hash (the copy button) and Google Fonts, matching caihl.org. If `kit/index.html` changes, recompute the hash or the buttons will stop working.

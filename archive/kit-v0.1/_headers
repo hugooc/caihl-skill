@@ -1,0 +1,12 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'sha256-T1uEKo99yZOnkXvzp898KjSiQfyPbjILAFDLi+GHctA='; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+  ! Access-Control-Allow-Origin
+
+/starter-folder.zip
+  Content-Disposition: attachment; filename="starter-folder.zip"
